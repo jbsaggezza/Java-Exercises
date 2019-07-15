@@ -53,38 +53,41 @@ public class ArrayRotate {
 
         }
 
-        for (int i = 0; i < outarray.length; i++) {
-            System.out.println("");
-            System.out.println(outarray[i]);
-        }
+		for (int i = 0; i < outarray.length; i++) {
+		    System.out.println("");
+		    System.out.println(outarray[i]);
+		}
 		
 	}
 	
 	//array rotation to the left with integer parameter
-    static void arrayRotationParam(int d) {
-        int[] arr = new int[]{1, 2, 3, 4, 5};
-        //result array
-        int[] outarray = new int[arr.length];
-           //looping backwards
-        for (int i = arr.length - 1; i >= 0; i--) {
-
+	
+    // Array rotate with input array and target int.
+    static int[] rotLeft(int[] a, int d) {
+    
+        //Create result array, which will be the length of input array
+        int[] outArray = new int [a.length];
+	    
+        //Looping backwards because we are rotating to the left.
+        for(int i  = a.length-1; i >= 0; i--){
 
             //get the target
             int target = i - d;
 
-            //but what happens when we get 3. code below creates a wrapping effect.
-            if (target < 0) {
-                target = target + arr.length;
+            //Wrapping effect to avoid Nullpointers
+            if(target < 0){
+                target += a.length;
             }
-            System.out.println(target);
 
-            outarray[target] = arr[i];
-
+            outArray[target] = a[i];
         }
 
-        for (int i = 0; i < outarray.length; i++) {
-            System.out.println("");
-            System.out.println(outarray[i]);
-        }
+        //print outArray to test
+        // for(int i = 0; i < outArray.length; i++){
+        //     System.out.println(outArray[i]);
+        // }
+
+        return outArray;      
     }
+
   }
