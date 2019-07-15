@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+//For the Tag Content Extractor exercise on Hackerrank
+
+public class Solution{
+	public static void main(String[] args){
+		
+		Scanner in = new Scanner(System.in);
+		int testCases = Integer.parseInt(in.nextLine());
+		while(testCases>0){
+			String line = in.nextLine();	
+          	//Write your code here
+            boolean matched = false;
+            Pattern capture = Pattern.compile("<(.+)>([^>]+)</\\1>");
+            Matcher m =  capture.matcher(line);
+
+            //While instead of if for find()
+            while(m.find()){
+
+            //group 2 = group after tags
+            System.out.println(m.group(2));
+            matched = true;
+            } 
+
+            if(!matched) {
+                System.out.println("None");
+            }
+			
+			testCases--;
+		}
+	}
+}
+
+    
+    
