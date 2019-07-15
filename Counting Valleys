@@ -1,0 +1,53 @@
+//Counting Valleys Hackerrank Solution
+
+
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    // Complete the countingValleys function below.
+    static int countingValleys(int n, String s) {
+        int altCount = 0;
+        int valCount = 0;
+        
+        //split input into char array
+        for(char step : s.toCharArray()){
+            if(step == 'D'){
+                altCount--;
+            } else {
+                altCount++;
+            }
+            //if the current step upwards brings the altcount to 0
+            if(altCount == 0 && step == 'U'){
+                valCount++;
+            }
+        }
+        return valCount;
+    }
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        int n = scanner.nextInt();
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+        String s = scanner.nextLine();
+
+        int result = countingValleys(n, s);
+
+        bufferedWriter.write(String.valueOf(result));
+        bufferedWriter.newLine();
+
+        bufferedWriter.close();
+
+        scanner.close();
+    }
+}
