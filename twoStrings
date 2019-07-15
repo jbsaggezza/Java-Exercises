@@ -1,0 +1,34 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+//Solution for Two Strings problem on Hackerrank
+
+public class Solution {
+
+    // Complete the twoStrings function below.
+    static String twoStrings(String s1, String s2) {
+
+        Set<Character> w1 = new HashSet<>();
+        Set<Character> w2 = new HashSet<>();
+        String result = " ";
+        for(char c : s1.toCharArray()){
+            w1.add(c);
+        }
+
+        for(char c : s2.toCharArray()){
+            w2.add(c);
+        }
+
+        if(Collections.disjoint(w1, w2) == true){
+            result = "NO";
+        } else {
+            result = "YES";
+        }
+
+        return result;
+    }
