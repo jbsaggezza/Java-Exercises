@@ -1,0 +1,85 @@
+Complete the timeInWords function in the editor below. It should return a time string as described.
+
+timeInWords has the following parameter(s):
+
+h: an integer representing hour of the day
+m: an integer representing minutes after the hour
+
+// Complete the timeInWords function below.
+    static String timeInWords(int h, int m) {
+
+        String minDesc = " ";
+        String result = " ";
+        Vector<String> numbers = new Vector<String>();
+
+        numbers.add("zero");
+        numbers.add("one");
+        numbers.add("two");
+        numbers.add("three");
+        numbers.add("four");
+        numbers.add("five");
+        numbers.add("six");
+        numbers.add("seven");
+        numbers.add("eight");
+        numbers.add("nine");
+        numbers.add("ten");
+        numbers.add("eleven");
+        numbers.add("twelve");
+        numbers.add("thirteen");
+        numbers.add("fourteen");
+        numbers.add("seventeen");
+        numbers.add("sixteen");
+        numbers.add("eighteen");
+        numbers.add("nineteen");
+        numbers.add("twenty");
+        numbers.add("twenty one");
+        numbers.add("twenty two");
+        numbers.add("twenty three");
+        numbers.add("twenty four");
+        numbers.add("twenty five");
+        numbers.add("twenty six");
+        numbers.add("twenty seven");
+        numbers.add("twenty eight");
+        numbers.add("twenty nine");
+        
+        switch(m){
+            case 0:
+                minDesc = "o' clock";
+                result =  numbers.get(h) + " " + minDesc;
+                break;
+            case 1:
+                minDesc = "minute past";
+                result =  numbers.get(m) + " " + minDesc + " " + numbers.get(h);
+                break;
+            case 15:
+                minDesc = "quarter past";
+                result =  minDesc + " " + numbers.get(h);
+                break;
+            case 30:
+                minDesc = "half past";
+                result =  minDesc + " " + numbers.get(h);
+                break;
+            case 45:
+                minDesc = "quarter to";
+                result = minDesc + " " + numbers.get(h + 1);
+                break;
+            default:
+                if(m - 1 > 0 && m != 35){
+                    m-=1;
+                }
+
+                if(m < 30 && m != 0){
+                    minDesc = "minutes past";
+                    result =  numbers.get(m) + " " + minDesc + " " + numbers.get(h);
+                }
+
+                if(m > 30 && m != 45){
+                    minDesc = "minutes to";
+                    m = Math.abs(m - 60);
+                    result =  numbers.get(m - 1) + " " + minDesc + " " + 
+                    numbers.get(h + 1);
+                }
+                break;
+        }
+        return result;
+    }
