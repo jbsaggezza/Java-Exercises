@@ -1,0 +1,39 @@
+Madison, is a little girl who is fond of toys. Her friend Mason works in a toy manufacturing factory . Mason has a 2D board A
+of size H x W with H rows and W columns. The board is divided into celss of size 1 x 1 with each cell indicated by it's coordinate (i,j).
+The cell (i,j) has an integer A(ij) written on it. To create the toy Mason stacks A(ij) number of cubes of size 1 x 1 x 1 on the cell (i,j).
+
+Given the description of the board showing the values of A(ij) and that the price of the toy is equal to the 3d surface area find the price of the toy.
+
+static int surfaceArea(int[][] A) {
+        //Get area
+        int height = A.length;
+        int width = A[0].length;
+
+        //Top and bottom cube surface areas
+        int result = 2 * height * width;
+
+            for(int i = 0; i < height; i++){
+                for(int j = 0; j < width; j++){
+                    //Lateral surface area of each cube added
+                    result += (A[i][j]) * 4;
+
+                    //remove unecessary areas given the height of adjacent cubes already calculated. 
+                    //There will always be a minimum of two neightbours.
+                    if(i > 0){
+                        if(A[i - 1][j] < A[i][j]){
+                            result -= 2 * A[i - 1][j];
+                        } else {
+                            result -= 2 * A[i][j];
+                        }
+                    }
+                    if(j > 0){
+                        if(A[i][j - 1] < A[i][j]){
+                            result -= 2 * A[i][j-1];
+                        } else {
+                            result -= 2 * A[i][j];
+                        }
+                    }    
+                }
+            }
+        return result;
+    }
